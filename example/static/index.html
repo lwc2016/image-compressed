@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .img{
+            width: 300px;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/index.min.js"></script>
+</head>
+<body>
+    <form action="">
+        <input id="file" type="file">
+        <button id="button">上传图片</button>
+    </form>
+    <img id="image" class="img" />
+    <script>
+        $("#button").click(function(event){
+            event.preventDefault();
+            let file = document.getElementById("file").files[0];
+            imageCompressed(file, {limitSize: 2 * 1024 * 1024}, function(res){
+                console.log(res);
+                let form = new FormData();
+                form.append("file", res);
+                $.ajax({
+                    url: "/upload",
+                    data: form,
+                    type: "post",
+                    processData: false,
+                    contentType: false,
+                    success: function(res){
+                        console.log(res);
+
+                        $("#image").attr("src", res.result);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
