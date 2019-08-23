@@ -19,7 +19,7 @@ const imageCompressed = require("image-compressed");
 imageCompressed接收3个参数，第一个参数：需要上传图片的file对象，第二个参数：配置， 第三个参数：压缩后的回调函数，返回压缩后的图片file对象。
 
 使用图片压缩之前的图片上传代码：
-```
+```javascript
 $("#button").click(function(event){
     event.preventDefault();
     let file = document.getElementById("file").files[0];
@@ -39,7 +39,7 @@ $("#button").click(function(event){
 });
 ```
 使用图压缩上传之后的文件代码：
-```
+```javascript
 $("#button").click(function(event){
     event.preventDefault();
     let file = document.getElementById("file").files[0];
